@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Ch. Sai Sucharitha | Medical Writer & Dentist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
+        
+        :root {
+            --primary: #0f766e;
+        }
+        
+        .tail-container {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(135deg, #0f766e 0%, #134e4a 100%);
+        }
+        
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #14b8a6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #14b8a6, #0f766e);
+            bottom: -8px;
+            left: 0;
+        }
+        
+        .timeline-item {
+            position: relative;
+        }
+        
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #14b8a6;
+        }
+        
+        .skill-bar {
+            height: 8px;
+            background: linear-gradient(90deg, #14b8a6, #0f766e);
+            transition: width 1.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .card-hover {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 25px 50px -12px rgb(15 118 110 / 0.4);
+        }
+        
+        .hero-text {
+            animation: fadeInUp 1s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .stethoscope {
+            animation: pulse 2s infinite;
+        }
+        
+        /* Contact Form Styles */
+        .form-input {
+            transition: all 0.3s ease;
+        }
+        
+        .form-input:focus {
+            border-color: #14b8a6;
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+        }
+        
+        .toast {
+            animation: toastIn 0.3s ease forwards;
+        }
+        
+        @keyframes toastIn {
+            from { transform: translate(-50%, 100px); opacity: 0; }
+            to { transform: translate(-50%, 0); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="tail-container bg-zinc-50 text-zinc-800">
+    <!-- NAVBAR -->
+    <nav class="bg-white border-b border-zinc-200 sticky top-0 z-50 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-teal-600 rounded-2xl flex items-center justify-center text-white font-bold text-2xl shadow-inner">🦷</div>
+                <div>
+                    <span class="font-bold text-2xl tracking-tight text-teal-700">Dr. Sai Sucharitha</span>
+                </div>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#about" onclick="smoothScrollTo('about')" class="nav-link text-zinc-600 hover:text-teal-700">About</a>
+                <a href="#experience" onclick="smoothScrollTo('experience')" class="nav-link text-zinc-600 hover:text-teal-700">Experience</a>
+                <a href="#education" onclick="smoothScrollTo('education')" class="nav-link text-zinc-600 hover:text-teal-700">Education</a>
+                <a href="#research" onclick="smoothScrollTo('research')" class="nav-link text-zinc-600 hover:text-teal-700">Research</a>
+                <a href="#skills" onclick="smoothScrollTo('skills')" class="nav-link text-zinc-600 hover:text-teal-700">Skills</a>
+            </div>
+            
+            <div class="flex items-center gap-4">
+                <a href="#contact" 
+                   class="px-5 py-2.5 text-sm font-semibold border border-teal-600 text-teal-600 hover:bg-teal-50 rounded-2xl transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span class="hidden sm:inline">Contact</span>
+                </a>
+                <button onclick="downloadCV()" 
+                        class="px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white text-sm font-semibold rounded-2xl transition-all flex items-center gap-2 shadow-lg shadow-teal-500/30">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Download CV</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="hero" class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[radial-gradient(at_bottom_right,#ffffff15_0%,transparent_50%)]"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center pt-20">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-6 py-2 rounded-3xl text-sm">
+                    <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+                    Available for Medical Writing &amp; Content Opportunities
+                </div>
+                
+                <h1 class="text-6xl md:text-7xl font-bold leading-tight tracking-tighter hero-text">
+                    Dr. Ch. Sai<br>Sucharitha
+                </h1>
+                
+                <p class="text-2xl text-teal-100 font-light max-w-lg hero-text" style="animation-delay: 200ms">
+                    Dentist • Medical Writer • Clinical Content Specialist
+                </p>
+                
+                <div class="flex flex-wrap gap-4 hero-text" style="animation-delay: 400ms">
+                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl">
+                        <i class="fa-solid fa-phone text-2xl"></i>
+                        <div>
+                            <p class="text-xs opacity-75">Phone</p>
+                            <a href="tel:7995151277" class="font-semibold">79951 51277</a>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-3 rounded-3xl">
+                        <i class="fa-solid fa-envelope text-2xl"></i>
+                        <div>
+                            <p class="text-xs opacity-75">Email</p>
+                            <a href="mailto:drsucharitha.ch@gmail.com" class="font-semibold">drsucharitha.ch@gmail.com</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 hero-text" style="animation-delay: 600ms">
+                    <a href="#contact" onclick="smoothScrollTo('contact')"
+                       class="px-8 py-4 bg-white text-teal-700 font-semibold rounded-3xl hover:shadow-2xl hover:shadow-white/30 transition-all flex items-center gap-3 group">
+                        Let's Connect
+                        <i class="fa-solid fa-arrow-right group-active:rotate-45 transition-transform"></i>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/drsucharitha" target="_blank"
+                       class="px-6 py-4 border border-white/60 hover:border-white text-white font-medium rounded-3xl flex items-center gap-2 transition-all">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-8 text-sm pt-6 hero-text" style="animation-delay: 800ms">
+                    <div>
+                        <span class="block text-4xl font-semibold text-teal-200">2+</span>
+                        <span class="text-teal-100">Years Clinical Experience</span>
+                    </div>
+                    <div>
+                        <span class="block text-4xl font-semibold text-teal-200">150+</span>
+                        <span class="text-teal-100">Procedures Performed</span>
+                    </div>
+                    <div>
+                        <span class="block text-4xl font-semibold text-teal-200">500+</span>
+                        <span class="text-teal-100">Patients Impacted</span>
+                    </div>
+                </div>
+            </div>
+            
+        <!-- Profile Image - Best Google Drive Method -->
+        <div class="relative flex justify-center md:justify-end">
+            <div class="relative">
+                <div class="w-80 h-80 md:w-96 md:h-96 bg-white/10 backdrop-blur-3xl rounded-[4rem] border border-white/30 p-4 shadow-2xl">
+                    <div class="w-full h-full bg-zinc-200 rounded-3xl overflow-hidden border-8 border-white shadow-inner">
+                        <img src="https://drive.google.com/thumbnail?id=1oYlZgCrkutIh2eQJLPiP0nvtIOo_ypld&sz=w800" 
+                            alt="Dr. Ch. Sai Sucharitha" 
+                            class="w-full h-full object-cover grayscale-[0.3] hover:grayscale-0 transition-all duration-700">
+                    </div>
+                </div>
+                
+                <!-- Floating badges remain the same -->
+                <div class="absolute -top-6 -right-6 bg-white text-teal-700 px-6 py-3 rounded-3xl shadow-xl flex items-center gap-3 text-sm font-semibold">
+                    <i class="fa-solid fa-award text-amber-500"></i>
+                    3rd Best Poster Award
+                </div>
+                
+                <div class="absolute -bottom-6 -left-6 bg-white text-teal-700 px-5 py-3 rounded-3xl shadow-xl text-sm font-medium flex items-center gap-2">
+                    <i class="fa-solid fa-stethoscope stethoscope"></i>
+                    BDS • Medical Writer
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-10 left-1/2 flex flex-col items-center text-white/70">
+            <p class="text-xs tracking-widest mb-2">SCROLL TO EXPLORE</p>
+            <i class="fa-solid fa-chevron-down animate-bounce text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- PROFILE SUMMARY -->
+    <section id="about" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5">
+                    <h2 class="section-header text-5xl font-bold tracking-tight mb-6">Clinical Professional</h2>
+                    <p class="text-xl text-zinc-600 leading-relaxed">
+                        Passionate dentist turned medical content creator with a unique blend of hands-on clinical experience and strong communication skills.
+                    </p>
+                    <div class="mt-8 flex gap-6">
+                        <div class="text-center">
+                            <div class="text-5xl font-bold text-teal-600">2</div>
+                            <div class="text-sm text-zinc-500">YEARS</div>
+                        </div>
+                        <div class="h-12 w-px bg-zinc-200"></div>
+                        <div>
+                            <p class="font-medium">Certified in:</p>
+                            <p class="text-teal-600">Medical Writing • SEO • ICH-GCP</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-7">
+                    <div class="prose prose-lg max-w-none text-zinc-600">
+                        <p class="text-lg">Clinical professional with 2 years of experience in patient care, evidence-based communication and documentation. Proficient in literature review, data interpretation and research. Certified in Medical Writing, Search Engine Optimization and Content Marketing.</p>
+                        <p class="text-lg">Skilled in developing clear, concise and accurate medical content by analyzing and simplifying complex clinical data for diverse stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-24 bg-zinc-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-header text-5xl font-bold tracking-tight mb-16 text-center">Work Experience</h2>
+            
+            <div class="max-w-4xl mx-auto space-y-12">
+                <div class="timeline-item pl-12 relative">
+                    <div class="absolute left-0 w-8 h-8 bg-teal-600 rounded-2xl flex items-center justify-center text-white font-bold shadow">🦷</div>
+                    <div class="bg-white rounded-3xl p-8 card-hover">
+                        <div class="flex flex-col md:flex-row md:items-center justify-between mb-6">
+                            <div>
+                                <h3 class="text-2xl font-semibold">General Dentist</h3>
+                                <p class="text-teal-600">Smile Dental Clinic, Narasaraopet</p>
+                            </div>
+                            <div class="text-sm text-zinc-500 mt-2 md:mt-0">
+                                March 2023 — April 2025
+                            </div>
+                        </div>
+                        <ul class="space-y-4 text-zinc-600">
+                            <li class="flex gap-3"><span class="text-teal-500 mt-1">•</span> Managed 8-10 patient consultations daily with accurate assessment, treatment planning and detailed documentation</li>
+                            <li class="flex gap-3"><span class="text-teal-500 mt-1">•</span> Performed and supported 150+ clinical procedures</li>
+                            <li class="flex gap-3"><span class="text-teal-500 mt-1">•</span> Educated 20+ patients weekly on oral health using simplified explanations</li>
+                            <li class="flex gap-3"><span class="text-teal-500 mt-1">•</span> Managed inventory and emergency scheduling efficiently</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-header text-5xl font-bold tracking-tight mb-16 text-center">Education</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <div class="bg-white border border-zinc-100 rounded-3xl p-8 card-hover">
+                    <div class="uppercase text-teal-600 text-xs font-medium mb-2">Bachelor of Dental Surgery</div>
+                    <h3 class="text-2xl font-semibold">Vishnu Dental College &amp; Hospital</h3>
+                    <p class="text-zinc-500">Bhimavaram • Sep 2017 - Dec 2022</p>
+                    <p class="mt-6 text-4xl font-bold text-teal-600">73.33%</p>
+                </div>
+                
+                <div class="bg-white border border-zinc-100 rounded-3xl p-8 card-hover">
+                    <div class="uppercase text-teal-600 text-xs font-medium mb-2">Intermediate</div>
+                    <h3 class="text-2xl font-semibold">Sri Chaitanya Junior College</h3>
+                    <p class="text-zinc-500">Vijayawada • Jun 2015 - Mar 2017</p>
+                    <p class="mt-6 text-4xl font-bold text-teal-600">96.8%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESEARCH -->
+    <section id="research" class="py-24 bg-zinc-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-header text-5xl font-bold tracking-tight mb-16 text-center">Research &amp; Presentations</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-3xl card-hover">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-semibold text-xl">Quick Tips to Prevent Cavities and Gum Diseases</h4>
+                            <p class="text-teal-600 text-sm mt-1">Poster Presentation • March 2022</p>
+                        </div>
+                        <span class="px-4 py-1 bg-amber-100 text-amber-700 text-xs font-medium rounded-2xl">3rd Best Award</span>
+                    </div>
+                    <p class="mt-6 text-zinc-600">Educational poster focused on patient awareness and secondary research.</p>
+                </div>
+                
+                <div class="bg-white p-8 rounded-3xl card-hover">
+                    <h4 class="font-semibold text-xl">Magnetic Crowns</h4>
+                    <p class="text-teal-600 text-sm mt-1">Abstract • August 2022</p>
+                    <p class="mt-6 text-zinc-600">Conceptual design for simplifying removal and reuse of fixed crowns through evidence-based reasoning.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-header text-5xl font-bold tracking-tight mb-16 text-center">Courses &amp; Certifications</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="p-6 border border-zinc-100 rounded-3xl hover:border-teal-200 transition-all">
+                    <i class="fa-solid fa-certificate text-4xl text-teal-500 mb-4"></i>
+                    <h4 class="font-semibold">ICH-GCP: Good Clinical Practice</h4>
+                    <p class="text-sm text-zinc-500">Udemy • May 2026</p>
+                </div>
+                <div class="p-6 border border-zinc-100 rounded-3xl hover:border-teal-200 transition-all">
+                    <i class="fa-solid fa-certificate text-4xl text-teal-500 mb-4"></i>
+                    <h4 class="font-semibold">Scientific Writing In Health Research</h4>
+                    <p class="text-sm text-zinc-500">ICMR • November 2025</p>
+                </div>
+                <div class="p-6 border border-zinc-100 rounded-3xl hover:border-teal-200 transition-all">
+                    <i class="fa-solid fa-certificate text-4xl text-teal-500 mb-4"></i>
+                    <h4 class="font-semibold">Medical Writing Skills for Beginners</h4>
+                    <p class="text-sm text-zinc-500">Write Clinic • December 2025</p>
+                </div>
+                <div class="p-6 border border-zinc-100 rounded-3xl hover:border-teal-200 transition-all">
+                    <i class="fa-solid fa-certificate text-4xl text-teal-500 mb-4"></i>
+                    <h4 class="font-semibold">Search Engine Optimization</h4>
+                    <p class="text-sm text-zinc-500">HubSpot Academy • December 2025</p>
+                </div>
+                <div class="p-6 border border-zinc-100 rounded-3xl hover:border-teal-200 transition-all">
+                    <i class="fa-solid fa-certificate text-4xl text-teal-500 mb-4"></i>
+                    <h4 class="font-semibold">Content Marketing</h4>
+                    <p class="text-sm text-zinc-500">HubSpot Academy • January 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-24 bg-zinc-900 text-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-header text-5xl font-bold tracking-tight mb-16 text-center text-white">Skills</h2>
+            
+            <div class="grid md:grid-cols-2 gap-16">
+                <div>
+                    <h3 class="text-3xl font-semibold mb-8 flex items-center gap-3"><i class="fa-solid fa-laptop-code"></i> Technical Skills</h3>
+                    <div class="space-y-8">
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm">
+                                <span>Medical Writing &amp; Documentation</span>
+                                <span class="text-teal-400">95%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="skill-bar w-[95%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm">
+                                <span>Patient Education &amp; Communication</span>
+                                <span class="text-teal-400">90%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="skill-bar w-[90%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm">
+                                <span>SEO &amp; Content Marketing</span>
+                                <span class="text-teal-400">85%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="skill-bar w-[85%]"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2 text-sm">
+                                <span>Research &amp; Data Interpretation</span>
+                                <span class="text-teal-400">88%</span>
+                            </div>
+                            <div class="h-2 bg-zinc-800 rounded-full overflow-hidden">
+                                <div class="skill-bar w-[88%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-3xl font-semibold mb-8 flex items-center gap-3"><i class="fa-solid fa-heart"></i> Soft Skills</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Communication</span>
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Problem Solving</span>
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Team Leadership</span>
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Time Management</span>
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Patient Care</span>
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Adaptability</span>
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Attention to Detail</span>
+                        <span class="px-5 py-3 bg-white/10 backdrop-blur-sm border border-white/10 rounded-3xl text-sm">Creative Ideation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- VOLUNTEER -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="section-header text-5xl font-bold tracking-tight mb-16 text-center">Volunteer &amp; Extracurricular</h2>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0">🌍</div>
+                        <div>
+                            <h4 class="font-semibold">Volunteer Dental Camps</h4>
+                            <p class="text-teal-600 text-sm">Miles for Smiles • Aug 2019 - Dec 2022</p>
+                            <p class="mt-3 text-zinc-600">Documented findings for 500+ patients and raised dental health awareness among school children.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <div class="w-12 h-12 bg-teal-100 text-teal-600 rounded-2xl flex items-center justify-center text-2xl flex-shrink-0">🏅</div>
+                        <div>
+                            <h4 class="font-semibold">Sports &amp; Cultural Coordinator</h4>
+                            <p class="text-teal-600 text-sm">Vishnu Dental College • Feb-Mar 2022</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+  <!-- CONTACT - Advanced Social Contact -->
+<section id="contact" class="py-24 bg-zinc-900 text-white relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-5xl md:text-6xl font-bold mb-6">Let's Connect &amp; Collaborate</h2>
+            <p class="text-xl text-zinc-400 max-w-2xl mx-auto">
+                Open to medical writing projects, content collaborations, and professional opportunities.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Email Card -->
+            <a href="mailto:drsucharitha.ch@gmail.com" 
+               class="group bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 transition-all duration-300 hover:scale-105 hover:border-teal-400">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-teal-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-envelope text-4xl text-teal-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2">Email Me</h3>
+                    <p class="text-teal-400 font-medium">drsucharitha.ch@gmail.com</p>
+                    <p class="text-zinc-500 text-sm mt-4">Quickest way to reach me</p>
+                </div>
+            </a>
+
+            <!-- Phone Card -->
+            <a href="tel:7995151277" 
+               class="group bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 transition-all duration-300 hover:scale-105 hover:border-teal-400">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-teal-600/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-phone text-4xl text-teal-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2">Call Me</h3>
+                    <p class="text-teal-400 font-medium">+91 79951 51277</p>
+                    <p class="text-zinc-500 text-sm mt-4">Available for calls</p>
+                </div>
+            </a>
+
+            <!-- LinkedIn Card -->
+            <a href="https://www.linkedin.com/in/drsucharitha" target="_blank" 
+               class="group bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 transition-all duration-300 hover:scale-105 hover:border-teal-400">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-[#0A66C2]/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-linkedin text-4xl text-[#0A66C2]"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2">LinkedIn</h3>
+                    <p class="text-zinc-400">Professional Network</p>
+                    <p class="text-teal-400 text-sm mt-6 group-hover:underline">Connect with me →</p>
+                </div>
+            </a>
+
+            <!-- Instagram Card -->
+            <a href="#" target="_blank" 
+               class="group bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 transition-all duration-300 hover:scale-105 hover:border-pink-500">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-instagram text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2">Instagram</h3>
+                    <p class="text-zinc-400">Medical &amp; Lifestyle Content</p>
+                    <p class="text-pink-400 text-sm mt-6 group-hover:underline">Follow me →</p>
+                </div>
+            </a>
+
+            <!-- X (Twitter) Card -->
+            <a href="#" target="_blank" 
+               class="group bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 transition-all duration-300 hover:scale-105 hover:border-sky-500">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-black/80 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-x-twitter text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2">X (Twitter)</h3>
+                    <p class="text-zinc-400">Health Discussions</p>
+                    <p class="text-sky-400 text-sm mt-6 group-hover:underline">Follow me →</p>
+                </div>
+            </a>
+
+            <!-- Facebook Card -->
+            <a href="#" target="_blank" 
+               class="group bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 rounded-3xl p-8 transition-all duration-300 hover:scale-105 hover:border-blue-600">
+                <div class="flex flex-col items-center text-center">
+                    <div class="w-20 h-20 bg-[#1877F2]/20 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <i class="fa-brands fa-facebook text-4xl text-[#1877F2]"></i>
+                    </div>
+                    <h3 class="text-2xl font-semibold mb-2">Facebook</h3>
+                    <p class="text-zinc-400">Community &amp; Updates</p>
+                    <p class="text-blue-400 text-sm mt-6 group-hover:underline">Connect with me →</p>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+    <!-- FOOTER -->
+    <footer class="bg-black text-white/60 py-12">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <p class="text-sm">© 2026 Dr. Ch. Sai Sucharitha. All Rights Reserved.</p>
+            <p class="text-xs mt-2">Andhra Pradesh, India</p>
+        </div>
+    </footer>
+
+    <script>
+        function smoothScrollTo(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                const navHeight = 80;
+                const elementPosition = element.getBoundingClientRect().top;
+                const offsetPosition = elementPosition + window.scrollY - navHeight;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        }
+        
+        // Animate skill bars
+        function animateSkills() {
+            const skillBars = document.querySelectorAll('.skill-bar');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const bars = entry.target.querySelectorAll('.skill-bar');
+                        bars.forEach(bar => {
+                            const width = bar.style.width;
+                            bar.style.width = '0%';
+                            setTimeout(() => bar.style.width = width, 100);
+                        });
+                    }
+                });
+            }, { threshold: 0.5 });
+            
+            const skillsSection = document.getElementById('skills');
+            if (skillsSection) observer.observe(skillsSection);
+        }
+        
+        // Download CV - Updated Google Drive direct link
+        function downloadCV() {
+            const cvUrl = "https://drive.google.com/uc?export=download&id=1rqZ6Kjfyu2YCluIoLmtMuGL8XIOrLp3b";
+            const link = document.createElement('a');
+            link.href = cvUrl;
+            link.download = 'Dr_Sai_Sucharitha_CV.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            showToast("CV downloaded successfully!");
+        }
+        
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast fixed bottom-8 left-1/2 transform -translate-x-1/2 bg-teal-600 text-white px-8 py-4 rounded-3xl shadow-2xl flex items-center gap-3 z-[9999]';
+            toast.innerHTML = `
+                <i class="fa-solid fa-check-circle"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.transition = 'all 0.4s ease';
+                toast.style.opacity = '0';
+                toast.style.transform = 'translate(-50%, 30px)';
+                setTimeout(() => toast.remove(), 500);
+            }, 3000);
+        }
+        
+        // Contact Form Handler (Client-side demo)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            
+            if (name && email && message) {
+                // In production, send to backend or EmailJS/Formspree
+                showToast(`Thank you, ${name}! Your message has been received.`);
+                this.reset();
+            } else {
+                showToast("Please fill all fields.");
+            }
+        });
+        
+        // Initialize
+        window.onload = function() {
+            animateSkills();
+            
+            // Scroll active nav
+            window.addEventListener('scroll', () => {
+                const sections = ['about', 'experience', 'education', 'research', 'skills', 'contact'];
+                const navLinks = document.querySelectorAll('.nav-link');
+                
+                let current = '';
+                sections.forEach(sectionId => {
+                    const section = document.getElementById(sectionId);
+                    if (section && scrollY >= section.offsetTop - 200) {
+                        current = sectionId;
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('text-teal-700', 'font-semibold');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('text-teal-700', 'font-semibold');
+                    }
+                });
+            });
+            
+            console.log('%c✅ Dr. Sai Sucharitha Advanced Portfolio Loaded Successfully!', 'color:#14b8a6; font-family:monospace; font-size:13px');
+        };
+    </script>
+</body>
+</html>
